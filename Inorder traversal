@@ -1,0 +1,73 @@
+//Morris traversal uses the conecept of threaded binary tree so that the binary tree traversal can be calculated in O(N) time and constant space time
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        //using morris traversal TC=O(N) and SC=O(1)
+        vector<int>inorder;
+        TreeNode*cur=root;
+        while(cur!=NULL)
+        {
+            if(cur->left==NULL)
+            {
+                inorder.push_back(cur->val); cur=cur->right;
+            }
+            else {
+                TreeNode*prev=cur->left;
+                while(prev->right and prev->right!=cur) {prev=prev->right;}
+                if(prev->right==NULL)
+                {
+                    prev->right=cur;
+                    cur=cur->left;
+                }
+                else
+                {
+                    prev->right=NULL;
+                    inorder.push_back(cur->val);
+                    cur=cur->right;
+                }
+            }
+        }
+        return inorder;
+    }
+};
+
+//recursive traversal TC=O(N) and Sc=O(H) stack space
+class Solution {
+public:  //inorder traversal using recursion TC=O(N) and SC=O(H) stack space
+    void helper(TreeNode*root,vector<int>&ans)
+    {   
+        if(!root) return ;
+        helper(root->left,ans);
+        ans.push_back(root->val);
+        helper(root->right,ans);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int>ans;
+        helper(root,ans);
+        return ans;
+    }
+};
+
+//iteratve solution using stack TC=O(N) and SC=O(N) of stack
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        TreeNode*node=root; vector<int>inorder;
+        stack<TreeNode*>st;
+        while(1)
+        {
+            if(node!=NULL)
+            {   st.push(node);
+                node=node->left;
+            }
+            else {
+                if(st.empty()==1) break;
+                node=st.top();
+                st.pop();
+                inorder.push_back(node->val);
+                node=node->right;
+            }
+        }
+        return inorder;
+    }
+};
