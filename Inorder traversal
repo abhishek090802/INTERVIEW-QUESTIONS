@@ -9,17 +9,17 @@ public:
         {
             if(cur->left==NULL)
             {
-                inorder.push_back(cur->val); cur=cur->right;
+                inorder.push_back(cur->val); cur=cur->right; //its like inorder is done for the node which does not have left node
             }
             else {
-                TreeNode*prev=cur->left;
+                TreeNode*prev=cur->left; //for each left we go as much right as we can if there is right and it should not point to himself
                 while(prev->right and prev->right!=cur) {prev=prev->right;}
-                if(prev->right==NULL)
+                if(prev->right==NULL)  //it means we are visiting here once and we should create a thread to point cur intead of pointing null
                 {
                     prev->right=cur;
                     cur=cur->left;
                 }
-                else
+                if(prev->right==cur)
                 {
                     prev->right=NULL;
                     inorder.push_back(cur->val);
