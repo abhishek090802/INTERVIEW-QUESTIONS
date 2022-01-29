@@ -48,3 +48,28 @@ public:
     
 };
 
+//using iterative traversal with TC=O(N) and SC=O(N)
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        //using iterative traversal Tc=O(N) and SC=O(N)
+        stack<TreeNode*>st; 
+        int count=0;
+        TreeNode*node=root;
+        while(!st.empty() || node)
+        {
+            if(node!=NULL)
+            {
+                st.push(node);
+                node=node->left;
+            }
+            else {
+                node=st.top();
+                st.pop();
+                if(++count==k) return node->val;
+                node=node->right;
+            }
+        }
+        return -1;
+    }
+};
