@@ -1,4 +1,4 @@
-//using a queue data structure with TC=O(N) and SC=O(N) for queue data structure
+//using a queue data structure with TC=O(N) and SC=O(N) for queue data structure in worst case when there is sqew tree
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
