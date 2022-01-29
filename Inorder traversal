@@ -52,16 +52,17 @@ public:  //inorder traversal using recursion TC=O(N) and SC=O(H) stack space
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        TreeNode*node=root; vector<int>inorder;
+        //inorder traversal in iterative way TC=O(N) and SC=O(N)
         stack<TreeNode*>st;
-        while(1)
+        vector<int>inorder;
+        TreeNode*node=root;
+        while(!st.empty() || node)
         {
             if(node!=NULL)
             {   st.push(node);
                 node=node->left;
             }
-            else {
-                if(st.empty()==1) break;
+            else{
                 node=st.top();
                 st.pop();
                 inorder.push_back(node->val);
