@@ -1,0 +1,39 @@
+//preoder,inorder,postorder traversal in one traversal with TC=O(3*N) as we are traversing each and every node in bt three times and SC=O(4*n) three vectors and one stack
+class Solution {
+public:
+    vector<int> preinpost(TreeNode* root) {
+        stack<pair<TreeNode*,int>>st;
+        st.push({root,1});
+        vector<int>pre,in,post;
+        if(!root) return;
+        while(!st.empty())
+        {
+            auto it=st.top();
+            st.pop();
+            //preorder part
+            if(it.second==1)
+            {
+                pre.push_back(it.first->val);
+                it.second++;
+                st.push(it);
+                if(it.firs->left!=NULL){
+                    st.push({it.first->left,1});
+                }
+            }
+            //inorder part
+            if(it.second==2)
+            {
+                in.push_back(it.first->val);
+                it.second++;
+                st.push(it);
+                if(it.first->right!=NULL)
+                {
+                    st.push({it.first->right,1});
+                }
+            }//postorder part
+            else 
+                post.push_back(it.first->val);
+        }
+        
+    }
+};
