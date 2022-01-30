@@ -1,4 +1,4 @@
-//recursive solution TC=O(N^2) and SC=O(H) recursive stack space naive solution
+//recursive solution TC=O(N*2) and SC=O(H) recursive stack space naive solution
 class Solution {
 public:
     int height(TreeNode*node)
