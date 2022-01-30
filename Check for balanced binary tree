@@ -1,0 +1,38 @@
+//recursive solution TC=O(N^2) and SC=O(H) recursive stack space naive solution
+class Solution {
+public:
+    int height(TreeNode*node)
+    {
+        if(!node) return 0;
+       int lh= height(node->left);
+       int rh= height(node->right);
+        return 1+max(lh,rh);
+    }
+    bool isBalanced(TreeNode* root) {
+        if(!root) return 1;
+        int lh=height(root->left);
+        int rh=height(root->right);
+        if(abs(lh-rh)>1) return 0;
+        bool ans1=isBalanced(root->left);
+        bool ans2=isBalanced(root->right);
+        return ans1 and ans2;
+    }
+};
+//recursive solution with optimization TC=O(N) and SC=O(H) recursive stack space
+class Solution {
+public:
+    int helper(TreeNode*node)
+    {
+        if(!node) return 0;
+        int lefth=helper(node->left);
+        if(lefth==-1) return -1;
+        int righth=helper(node->right);
+        if(righth==-1) return -1;
+        if(abs(lefth-righth)>1) return -1;
+        return 1+max(lefth,righth);
+    }
+    bool isBalanced(TreeNode* root) {
+        return helper(root)!=-1;
+        
+    }
+};
