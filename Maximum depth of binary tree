@@ -1,0 +1,13 @@
+//recursive way with TC=O(N) and SC=O(H) recursive stack space
+class Solution {
+public:
+    int maxDepth(TreeNode* root) { 
+        //recursive solution with TC=O(N) and SC=O(H) that is recursive stack space
+        if(!root) return 0;
+        int lh=maxDepth(root->left);
+        int rh=maxDepth(root->right);
+        return 1+max(lh,rh);
+    }
+};
+
+//
