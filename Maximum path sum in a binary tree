@@ -1,0 +1,17 @@
+//recursive solution with TC=O(N) and SC=O(H) that will be the recusive stack space only
+class Solution {
+public:
+    int helper(TreeNode*node,int& maxi)
+    {
+        if(!node) return 0;
+        int left=max(0,helper(node->left,maxi));  //bcz in any case the sum comes out to be negative then we wont be consider that and thats why 0 is being considered here as well to replace that negative value
+        int right=max(0,helper(node->right,maxi));
+        maxi=max(maxi,left+right+node->val);
+        return max(left,right)+node->val;
+    }
+    int maxPathSum(TreeNode* root) {
+        int maxi=INT_MIN;
+        helper(root,maxi);
+        return maxi;
+    }
+};
