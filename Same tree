@@ -1,0 +1,10 @@
+//recursive solution with TC=O(N) and SC=O(H) recursive stack space if the tree are same then their all of the traversal should also be same
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL || q==NULL) return p==q;
+        bool left=isSameTree(p->left,q->left);
+        bool right=isSameTree(p->right,q->right);
+        return p->val==q->val and left and right;
+    }
+};
