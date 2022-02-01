@@ -1,4 +1,4 @@
-//recursive solution with TC=O(H)+O(H)+O(N) and SC=O(N)+O(H)
+//kind of iterative solution level order traversal solution with TC=O(H)+O(H)+O(N) and SC=O(N)+O(H)
 class Solution {
     bool isLeaf(Node* root) {
         return !root->left && !root->right;
